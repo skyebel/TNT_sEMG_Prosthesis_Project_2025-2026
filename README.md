@@ -1,2 +1,2 @@
 # EMG_Prosthetic
-Triton NeuroTech EMG Prosthetic Project | 2025-2026
+Triton NeuroTech sEMG Prosthetic Hand Project | 2025-2026
