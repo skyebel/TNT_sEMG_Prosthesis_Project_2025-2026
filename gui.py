@@ -18,7 +18,7 @@ from matplotlib.figure import Figure
 # MindRove / BrainFlow Imports
 from mindrove.board_shim import BoardShim, MindRoveInputParams, BoardIds
 
-# ================= 1. MODEL DEFINITION =================
+# MODEL DEFINITION 
 class FinalPushLSTM(nn.Module):
     def __init__(self, input_size=4, hidden_size=128, num_layers=2, num_classes=5):
         super().__init__()
@@ -37,7 +37,7 @@ class FinalPushLSTM(nn.Module):
         out, _ = self.lstm(x)
         return self.fc(out[:, -1, :])    
 
-# ================= 2. UTILITIES & FILTERING =================
+# UTILITIES & FILTERING 
 def filter_emg_data(data, fs=1000.0):
     """Notch-60 Hz + 10-200 Hz bandpass, channel-by-channel via SOS."""
     if data.shape[0] < 27:
@@ -57,7 +57,7 @@ def filter_emg_data(data, fs=1000.0):
 def apply_filters(data, fs=500.0):
     return filter_emg_data(data, fs=fs)
 
-# ================= 2b. WINDOWING =================
+# WINDOWING 
 def create_sequences(df, window_size, step):
     """Create (X, y) tensors from a DataFrame with CH1-CH4 + Class columns.
     Only windows where every sample shares the same label are kept."""
@@ -82,7 +82,7 @@ def create_sequences(df, window_size, step):
     return (torch.tensor(np.stack(X), dtype=torch.float32),
             torch.tensor(y, dtype=torch.long))
 
-# ================= 2c. LIVE DATA LOADER (replaces load_all_subjects) =================
+# LIVE DATA LOADER 
 def load_mindrove_data(filepath, fs=500.0):
     """Load, filter, and normalize a MindRove CSV recording.
 
@@ -90,8 +90,6 @@ def load_mindrove_data(filepath, fs=500.0):
     Returns (df with CH1-CH4 + label columns, fitted StandardScaler).
     """
     df = pd.read_csv(filepath)
-    # Support both named CH1-CH4 columns (new _sequence_worker) and
-    # legacy integer column names (0,1,2,3) from older recordings.
     if 'CH1' in df.columns:
         emg_cols = ['CH1', 'CH2', 'CH3', 'CH4']
     else:
@@ -105,16 +103,16 @@ def load_mindrove_data(filepath, fs=500.0):
 
     channels = ['CH1', 'CH2', 'CH3', 'CH4']
 
-    # Step 1 – filter
+    # Step 1: filter
     df[channels] = filter_emg_data(df[channels].values, fs=fs)
 
-    # Step 2 – normalize (StandardScaler, matching notebook's per-subject scaling)
+    # Step 2: normalize (StandardScaler)
     scaler = StandardScaler()
     df[channels] = scaler.fit_transform(df[channels].values)
 
     return df, scaler
 
-# ================= 3. CONFIGURATION =================
+# CONFIGURATION 
 BOARD_ID = BoardIds.MINDROVE_WIFI_BOARD
 NUM_CHANNELS = 4
 SAMPLING_RATE = 500
@@ -154,7 +152,7 @@ THEMES = {
 CHANNEL_COLORS = ['cyan', '#FF9800', '#1DB954', '#f44336']
 
 
-# ================= 4. GUI CLASS =================
+# GUI CLASS 
 class GuidedBiLSTM_GUI:
     def __init__(self, root):
         self.root = root
@@ -183,7 +181,7 @@ class GuidedBiLSTM_GUI:
         self._apply_theme('Dark')
         self._check_device_connection()
 
-    # ------------------------------------------------------------------
+
     def _setup_ui(self):
         self.conn_lbl = tk.Label(self.root, text="DEVICE: DISCONNECTED",
                                  font=("Courier", 12, "bold"))
@@ -232,7 +230,7 @@ class GuidedBiLSTM_GUI:
                   command=self._open_accessibility,
                   bg='gray', fg='white').pack(side='left', padx=5)
 
-    # ------------------------------------------------------------------
+
     def _open_accessibility(self):
         win = tk.Toplevel(self.root)
         win.title("Accessibility")
@@ -251,7 +249,7 @@ class GuidedBiLSTM_GUI:
                            command=lambda n=name: self._apply_theme(n)).pack()
         tk.Button(win, text="Close", command=win.destroy).pack(pady=10)
 
-    # ------------------------------------------------------------------
+
     def _apply_theme(self, name):
         self.current_theme = name
         t = THEMES[name]
@@ -297,7 +295,7 @@ class GuidedBiLSTM_GUI:
         for text in leg.get_texts():
             text.set_color(fg)
 
-    # ------------------------------------------------------------------
+
     def _init_plots(self):
         self.fig = Figure(figsize=(6, 2.5), dpi=100)
         self.ax  = self.fig.add_subplot(111)
@@ -351,7 +349,7 @@ class GuidedBiLSTM_GUI:
 
             time.sleep(0.05)
 
-    # ------------------------------------------------------------------
+
     def _check_device_connection(self):
         if self.board and self.board.is_prepared():
             self.conn_lbl.config(text="DEVICE: CONNECTED", fg="#1DB954")
@@ -369,7 +367,7 @@ class GuidedBiLSTM_GUI:
         except Exception as e:
             messagebox.showerror("Connection Error", str(e))
 
-    # ------------------------------------------------------------------
+
     def run_sequence(self):
         if not self.board:
             messagebox.showwarning("Error", "Connect device first!")
@@ -407,7 +405,7 @@ class GuidedBiLSTM_GUI:
         self.is_running = False
         self.root.after(0, lambda: self.status_lbl.config(text="Recording Complete"))
 
-    # ------------------------------------------------------------------
+
     def start_training(self):
         self.status_lbl.config(text="Training...")
         threading.Thread(target=self._train_worker, daemon=True).start()
@@ -420,10 +418,10 @@ class GuidedBiLSTM_GUI:
 
         self.model = FinalPushLSTM(input_size=NUM_CHANNELS, num_classes=5).to(self.device)
 
-        # ── Step 1 & 2: filter_emg_data + StandardScaler via load_mindrove_data
+        # Step 1 & 2: filter_emg_data + StandardScaler via load_mindrove_data
         df, self.scaler = load_mindrove_data(DATA_FILE, fs=float(SAMPLING_RATE))
 
-        # ── Step 3: windowing via create_sequences (strict label-consistency)
+        # Step 3: windowing via create_sequences
         df = df.rename(columns={'label': 'Class'})
         X, y = create_sequences(df, window_size=WINDOW_SIZE, step=STEP_SIZE)
 
@@ -454,7 +452,7 @@ class GuidedBiLSTM_GUI:
             optimizer, max_lr=0.003,
             steps_per_epoch=len(train_loader), epochs=epochs)
 
-        # ── Training loop ─────────────────────────────────────────────────────
+        # Training loop 
         self.model.train()
         for epoch in range(epochs):
             correct, total = 0, 0
@@ -465,7 +463,7 @@ class GuidedBiLSTM_GUI:
                 loss = criterion(out, by)
                 loss.backward()
                 optimizer.step()
-                scheduler.step()          # OneCycleLR steps per batch
+                scheduler.step()
                 correct += (out.argmax(1) == by).sum().item()
                 total   += by.size(0)
             acc = (correct / total) * 100
@@ -473,7 +471,7 @@ class GuidedBiLSTM_GUI:
                 lambda a=acc: self.train_acc_lbl.config(text=f"Train Acc: {a:.1f}%"))
             self.progress['value'] = (epoch + 1) * (100 / epochs)
 
-        # ── Evaluation ────────────────────────────────────────────────────────
+        # Evaluation 
         self.model.eval()
         with torch.no_grad():
             test_out = self.model(X_test.to(self.device))
@@ -490,7 +488,7 @@ class GuidedBiLSTM_GUI:
             self.status_lbl.config(text="Training Done!")
         ])
 
-    # ------------------------------------------------------------------
+
     def toggle_prediction(self):
         if not self.board:
             messagebox.showwarning("Error", "Connect device first!")
@@ -566,7 +564,7 @@ class GuidedBiLSTM_GUI:
         self.board.get_board_data()
         self.live_window_buffer = np.zeros((0, NUM_CHANNELS), dtype=np.float32)
 
-        # ── Load normalisation stats saved during training ────────────────────
+        # Load normalisation stats saved during training 
         if hasattr(self, 'scaler'):
             scaler_mean  = self.scaler.mean_
             scaler_scale = self.scaler.scale_
@@ -638,7 +636,7 @@ class GuidedBiLSTM_GUI:
                 traceback.print_exc()
                 print(f"Prediction error: {e}")
 
-    # ------------------------------------------------------------------
+    
     def _load_model(self):
         if os.path.exists(MODEL_PATH):
             try:
