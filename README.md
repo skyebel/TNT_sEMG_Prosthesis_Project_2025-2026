@@ -83,7 +83,7 @@ The current implementation trains and classifies five gestures; extending this s
 | `Motor_Execute.ino` | Arduino firmware that receives predicted gesture commands from `gui.py` and drives the servo assembly to execute the corresponding gesture in real time. |
 | `fsr_circuit.ino` | Proof-of-concept Arduino firmware reading four force-sensitive resistors (FSRs) and reporting live readings over Serial and an LCD; exploratory groundwork for future force/tactile feedback, not yet integrated into the gesture pipeline. |
 | `data/` | Recorded sEMG sessions in CSV format. |
-| `sEMG Prosthetic Hand - Iron Man TNT.pdf` | Project poster/slide deck presented at the 2026 California Neurotechnology Conference @UC Berkeley, summarizing the project overview. |
+| `sEMG Prosthetic Hand - Iron Man TNT.pdf` | Project poster presented at the 2026 California Neurotechnology Conference @UC Berkeley, summarizing the project overview. |
 | `requirements.txt` | Python package dependencies. |
  
 ## Installation
