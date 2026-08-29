@@ -90,6 +90,7 @@ The current implementation trains and classifies five gestures; extending this s
 - Python 3.9 or later
 - A MindRove sEMG armband for data collection and live inference
 - Optional: an NVIDIA GPU for accelerated training. The default entry in `requirements.txt` installs a CUDA 11.8 build of PyTorch; substitute the appropriate index URL for a different CUDA version or a CPU-only build.
+
 **Setup**
  
 ```bash
@@ -121,6 +122,7 @@ Within the interface:
 - Evaluation of CNN-LSTM, CNN-GRU, and transformer architectures for modeling more complex spatiotemporal patterns in gesture recognition
 - Proportional control algorithms for more nuanced actuation, beyond discrete gesture classes
 - Transfer learning protocols and model quantization to reduce calibration time and inference latency
+
 ## References
  
 Aviles-Mendoza, Karla, et al. "A 3D Printed, Bionic Hand Powered by EMG Signals and Controlled by an Online Neural Network." *Biomimetics*, vol. 8, no. 2, 14 June 2023, p. 255. PubMed Central, https://doi.org/10.3390/biomimetics8020255.
