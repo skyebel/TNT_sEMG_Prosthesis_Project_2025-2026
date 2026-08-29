@@ -7,11 +7,11 @@
  
 ## Introduction
  
-This project develops an open-source, affordable, real-time prosthetic hand capable of executing hand gestures from user muscle intent, operationalized via surface electromyography (sEMG). A four-channel MindRove armband captures forearm muscle activity, which is filtered, windowed, and classified by a bidirectional LSTM (BiLSTM) network. Predicted gestures are relayed to an Arduino-driven servo assembly that actuates the corresponding hand pose in real time.
+This project develops an open-source, affordable, real-time prosthetic hand capable of executing hand gestures from user muscle intent, operationalized via surface electromyography (sEMG). Employing a 4-channel MindRove armband, we capture forearm muscle activity, which is filtered, windowed, and classified by a bidirectional LSTM (BiLSTM) network. Predicted gestures are relayed to an Arduino-driven servo assembly that actuates the corresponding finger movements in real time.
  
-The project is intended as a demonstration of technologically accessible brain-computer interface (BCI) and biosignal-driven control, with the broader aim of extending this framework to applications in prosthetic accessibility, cooperative human-computer interaction, smart device control, and biomimetic device design.
+The project is intended as a demonstration of technologically accessible brain-computer interface (BCI) and biosignal-driven control, with the broader aim of extending this framework to applications in prosthetic accessibility, cooperative human-computer interaction, smart device control, and low-cost device design.
  
-The project poster presented at the 2026 California Neurotechnology Conference @UC Berkeley, detailing a short project overview, is available [here](https://drive.google.com/file/d/1DYNPa0U_blKSx-6KFc1fAIsUNBEod6rd/view) or `sEMG Prosthetic Hand - Iron Man TNT`.
+The project poster presented at the 2026 California Neurotechnology Conference (CNTC) @UC Berkeley, detailing a short project overview, is available [here](https://drive.google.com/file/d/1DYNPa0U_blKSx-6KFc1fAIsUNBEod6rd/view) or `sEMG Prosthetic Hand - Iron Man TNT`.
  
 For the team's ongoing development repository, including exploratory notebooks and initial project direction, see [TritonNeuroTech-EMG-Prosthetics](https://github.com/earanda4/TritonNeuroTech-EMG-Prosthetics).
  
@@ -30,7 +30,7 @@ The system transforms raw biosignals into physical hand motion through the follo
 1. The MindRove armband detects multichannel sEMG signals at the forearm, driven by user muscle contraction and extension.
 2. The GUI acquires raw sEMG data and applies filtering to isolate the frequency band of interest and remove electrical noise.
 3. Filtered signals are segmented into overlapping windows and normalized.
-4. A BiLSTM network extracts temporal features from each window and classifies the corresponding gesture.
+4. A BiLSTM network automatically extracts temporal features from each window and classifies the corresponding gesture.
 5. The GUI issues servo motion commands to the Arduino controller for the fingers of the prosthetic hand.
 6. The prosthetic executes the predicted gesture, actuating the fingers to the corresponding pose.
 ## Data Processing
