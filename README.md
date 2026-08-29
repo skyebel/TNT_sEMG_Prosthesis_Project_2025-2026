@@ -7,7 +7,7 @@
  
 ## Introduction
  
-This project develops an affordable, real-time prosthetic hand capable of executing hand gestures from user muscle intent, sensed via surface electromyography (sEMG). A four-channel MindRove armband captures forearm muscle activity, which is filtered, windowed, and classified by a bidirectional LSTM (BiLSTM) network. Predicted gestures are relayed to an Arduino-driven servo assembly that actuates the corresponding hand pose in real time.
+This project develops an affordable, real-time prosthetic hand capable of executing hand gestures from user muscle intent, operationalized via surface electromyography (sEMG). A four-channel MindRove armband captures forearm muscle activity, which is filtered, windowed, and classified by a bidirectional LSTM (BiLSTM) network. Predicted gestures are relayed to an Arduino-driven servo assembly that actuates the corresponding hand pose in real time.
  
 The project is intended as a demonstration of technologically accessible brain-computer interface (BCI) and biosignal-driven control, with the broader aim of extending this framework to applications in prosthetic accessibility, cooperative human-computer interaction, smart device control, and biomimetic device design.
 
