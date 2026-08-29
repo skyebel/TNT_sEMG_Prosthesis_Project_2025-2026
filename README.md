@@ -11,7 +11,7 @@ This project develops an open-source, affordable, real-time prosthetic hand capa
  
 The project is intended as a demonstration of technologically accessible brain-computer interface (BCI) and biosignal-driven control, with the broader aim of extending this framework to applications in prosthetic accessibility, cooperative human-computer interaction, smart device control, and low-cost device design.
  
-The research poster presented at the 2026 California Neurotechnology Conference (CNTC) @UC Berkeley, which details a brief project overview, is available [here](https://drive.google.com/file/d/1DYNPa0U_blKSx-6KFc1fAIsUNBEod6rd/view) or within the repository file, `sEMG Prosthetic Hand - Iron Man TNT`.
+The research poster presented at the 2026 California Neurotechnology Conference (CNTC) @UC Berkeley, which details a brief project overview, is available [here](https://drive.google.com/file/d/1DYNPa0U_blKSx-6KFc1fAIsUNBEod6rd/view) or within the repository file, `sEMG Prosthetic Hand - Iron Man TNT.pdf`.
  
 For the team's ongoing development repository, including exploratory notebooks and initial project direction, see [TritonNeuroTech-EMG-Prosthetics](https://github.com/earanda4/TritonNeuroTech-EMG-Prosthetics).
  
