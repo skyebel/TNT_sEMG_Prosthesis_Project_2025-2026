@@ -10,11 +10,11 @@
 This project develops an affordable, real-time prosthetic hand capable of executing hand gestures from user muscle intent, operationalized via surface electromyography (sEMG). A four-channel MindRove armband captures forearm muscle activity, which is filtered, windowed, and classified by a bidirectional LSTM (BiLSTM) network. Predicted gestures are relayed to an Arduino-driven servo assembly that actuates the corresponding hand pose in real time.
  
 The project is intended as a demonstration of technologically accessible brain-computer interface (BCI) and biosignal-driven control, with the broader aim of extending this framework to applications in prosthetic accessibility, cooperative human-computer interaction, smart device control, and biomimetic device design.
-
+ 
 The project poster presented at the 2026 California Neurotechnology Conference @UC Berkeley, detailing a short project overview, is available [here](https://drive.google.com/file/d/1DYNPa0U_blKSx-6KFc1fAIsUNBEod6rd/view).
-
+ 
 For the team's ongoing development repository, including exploratory notebooks and initial project direction, see [TritonNeuroTech-EMG-Prosthetics](https://github.com/earanda4/TritonNeuroTech-EMG-Prosthetics).
-
+ 
 ## Background
  
 **Brain-computer interface (BCI):** a system that translates physiological signals, in this case muscular rather than strictly neural, into commands for an external device.
@@ -79,7 +79,8 @@ The current implementation trains and classifies five gestures; extending this s
 | Path | Description |
 |:-----|:-------------|
 | `gui.py` | Primary application. Implements device connection, guided data collection, model training, and live gesture inference within a Tkinter interface, including a real-time EMG plot. |
-| `gesture_tests.ino` | Arduino firmware driving the five-servo hand through the defined gesture set, used to verify actuation hardware independently of the classification pipeline. |
+| `gesture_tests.ino` | Arduino firmware driving the five-servo hand through the defined gesture set, used for initial testing to verify actuation hardware independently of the classification pipeline. |
+| `Motor_Execute.ino` | Arduino firmware that receives predicted gesture commands from `gui.py` and drives the servo assembly to execute the corresponding gesture in real time. |
 | `data/` | Recorded sEMG sessions in CSV format. |
 | `requirements.txt` | Python package dependencies. |
  
@@ -90,7 +91,6 @@ The current implementation trains and classifies five gestures; extending this s
 - Python 3.9 or later
 - A MindRove sEMG armband for data collection and live inference
 - Optional: an NVIDIA GPU for accelerated training. The default entry in `requirements.txt` installs a CUDA 11.8 build of PyTorch; substitute the appropriate index URL for a different CUDA version or a CPU-only build.
-
 **Setup**
  
 ```bash
@@ -113,7 +113,7 @@ Within the interface:
 2. **Start Sequence** runs the guided data collection protocol, prompting the user through each gesture for a fixed duration and logging labeled samples to `collected_emg_data.csv`.
 3. **Train** filters and windows the collected data, trains `FinalPushLSTM`, and reports training and held-out test accuracy. Trained weights (`bilstm_vader.pt`) and scaler parameters (`scaler_mean.npy`, `scaler_scale.npy`) are saved for reuse.
 4. **Live Predict** performs continuous inference on incoming EMG and reports the predicted gesture with an associated confidence score.
-**Firmware.** Flash `gesture_tests.ino` to the microcontroller to verify hand actuation independently of the classification pipeline; this requires the `Adafruit_PWMServoDriver` library. In the integrated system, gesture predictions produced by `gui.py` are intended to be transmitted to the microcontroller in place of the fixed demonstration loop in this sketch.
+5. **Firmware.** Flash `gesture_tests.ino` to the microcontroller for initial testing, to verify hand actuation independently of the classification pipeline. For live gesture execution, flash `Motor_Execute.ino`, which receives gesture predictions produced by `gui.py` and actuates the corresponding hand pose in real time. Whilst `gui.py` is running,  the `.ino` files also require the `Adafruit_PWMServoDriver` library or the Arduino IDE's Serial Monitor. 
  
 ## Next Steps
  
@@ -132,5 +132,3 @@ Karnam, Naveen Kumar, et al. "EMGHandNet: A Hybrid CNN and Bi-LSTM Architecture 
 ## Contributors
  
 Triton NeuroTech, University of California San Diego. Project leads: Skye Belsher and Thejo Tattala. Project members: Enrique Aranda, Peter Little, Byron Chen, Ziqing Zhu, Bora Vanli, Dhruv Sehgal, Shivani Rajanala, Abhay Korlapati, Siddhant Gulati, Rishab Kolan, Tristan Lee | Contributions span mechanical design and 3D printing, embedded firmware, sEMG signal processing, and machine learning.
-
-
