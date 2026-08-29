@@ -10,7 +10,9 @@
 This project develops an affordable, real-time prosthetic hand capable of executing hand gestures from user muscle intent, sensed via surface electromyography (sEMG). A four-channel MindRove armband captures forearm muscle activity, which is filtered, windowed, and classified by a bidirectional LSTM (BiLSTM) network. Predicted gestures are relayed to an Arduino-driven servo assembly that actuates the corresponding hand pose in real time.
  
 The project is intended as a demonstration of technologically accessible brain-computer interface (BCI) and biosignal-driven control, with the broader aim of extending this framework to applications in prosthetic accessibility, cooperative human-computer interaction, smart device control, and biomimetic device design.
- 
+
+For the team's ongoing development repository, including exploratory notebooks and additional contributors, see [TritonNeuroTech-EMG-Prosthetics](https://github.com/earanda4/TritonNeuroTech-EMG-Prosthetics).
+
 ## Background
  
 **Brain-computer interface (BCI):** a system that translates physiological signals, in this case muscular rather than strictly neural, into commands for an external device.
@@ -126,3 +128,5 @@ Karnam, Naveen Kumar, et al. "EMGHandNet: A Hybrid CNN and Bi-LSTM Architecture 
 ## Contributors
  
 Triton NeuroTech, University of California San Diego. Project leads: Skye Belsher and Thejo Tattala. Project members: Enrique Aranda, Peter Little, Byron Chen, Ziqing Zhu, Bora Vanli, Dhruv Sehgal, Shivani Rajanala, Abhay Korlapati, Siddhant Gulati, Rishab Kolan, Tristan Lee | Contributions span mechanical design and 3D printing, embedded firmware, sEMG signal processing, and machine learning.
+
+
