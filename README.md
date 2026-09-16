@@ -2,9 +2,11 @@
  
 **Triton NeuroTech, University of California San Diego**
 **Academic Year 2025-2026**
+
  
 **Project Leads:** Skye Belsher, Thejo Tattala
-**Project members:** Enrique Aranda, Peter Little, Byron Chen, Ziqing Zhu, Bora Vanli, Dhruv Sehgal, Shivani Rajanala, Abhay Korlapati, Siddhant Gulati, Rishab Kolan, Tristan Lee
+
+**Project Members:** Enrique Aranda, Peter Little, Byron Chen, Ziqing Zhu, Bora Vanli, Dhruv Sehgal, Shivani Rajanala, Abhay Korlapati, Siddhant Gulati, Rishab Kolan, Tristan Lee
  
 ## Introduction
  
