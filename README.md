@@ -1,8 +1,6 @@
 # sEMG Prosthetic Hand: Iron Man Gauntlet
  
-**Triton NeuroTech, University of California San Diego**
-
-**Academic Year 2025-2026**
+**Triton NeuroTech, University of California San Diego | Academic Year 2025-2026**
 
  
 **Project Leads:** Skye Belsher, Thejo Tattala
