@@ -44,7 +44,7 @@ Filtering is applied as cascaded second-order sections (`scipy.signal.sosfiltfil
  
 ## Model
  
-The classifier, `FinalPushLSTM`, is a two-layer bidirectional LSTM (hidden size 128) followed by a fully connected classification head with batch normalization and dropout. Training uses the AdamW optimizer, cross-entropy loss with label smoothing, and a one-cycle learning rate schedule over 15 epochs, with an 80/20 stratified train-test split. Scaler parameters computed during training are persisted and reapplied during live inference, so that the normalization applied to streaming data matches that seen during training.
+The classifier, `BiLSTM`, is a two-layer bidirectional LSTM (hidden size 128) followed by a fully connected classification head with batch normalization and dropout. Training uses the AdamW optimizer, cross-entropy loss with label smoothing, and a one-cycle learning rate schedule over 15 epochs, with an 80/20 stratified train-test split. Scaler parameters computed during training are persisted and reapplied during live inference, so that the normalization applied to streaming data matches that seen during training.
  
 At inference time, predictions are stabilized by aggregating class votes and averaged softmax probabilities across a rolling set of consecutive windows before a gesture is reported to the user.
  
@@ -116,7 +116,7 @@ Within the interface:
  
 1. **Connect Device** initializes the session with the MindRove armband.
 2. **Start Sequence** runs the guided data collection protocol, prompting the user through each gesture for a fixed duration and logging labeled samples to `collected_emg_data.csv`.
-3. **Train** filters and windows the collected data, trains `FinalPushLSTM`, and reports training and held-out test accuracy. Trained weights (`bilstm_vader.pt`) and scaler parameters (`scaler_mean.npy`, `scaler_scale.npy`) are saved for reuse.
+3. **Train** filters and windows the collected data, trains `BiLSTM`, and reports training and held-out test accuracy. Trained weights (`bilstm_vader.pt`) and scaler parameters (`scaler_mean.npy`, `scaler_scale.npy`) are saved for reuse.
 4. **Live Predict** performs continuous inference on incoming EMG and reports the predicted gesture with an associated confidence score.
 5. **Firmware.** Flash `gesture_tests.ino` to the microcontroller for initial testing, to verify hand actuation independently of the classification pipeline. For live gesture execution, flash `Motor_Execute.ino`, which receives gesture predictions produced by `gui.py` and actuates the corresponding hand pose in real time. Whilst `gui.py` is running,  the `.ino` files also require the `Adafruit_PWMServoDriver` library or the Arduino IDE's Serial Monitor. 
  
