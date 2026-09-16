@@ -19,7 +19,7 @@ from matplotlib.figure import Figure
 from mindrove.board_shim import BoardShim, MindRoveInputParams, BoardIds
 
 # MODEL DEFINITION 
-class FinalPushLSTM(nn.Module):
+class BiLSTM(nn.Module):
     def __init__(self, input_size=4, hidden_size=128, num_layers=2, num_classes=5):
         super().__init__()
         self.lstm = nn.LSTM(input_size, hidden_size, num_layers,
@@ -163,7 +163,7 @@ class GuidedBiLSTM_GUI:
         self.offset_step = 200
 
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.model = FinalPushLSTM(input_size=NUM_CHANNELS, num_classes=5).to(self.device)
+        self.model = BiLSTM(input_size=NUM_CHANNELS, num_classes=5).to(self.device)
         self._load_model()
 
         self.board = None
@@ -416,7 +416,7 @@ class GuidedBiLSTM_GUI:
                 text="ERROR: No data file found. Run sequence first."))
             return
 
-        self.model = FinalPushLSTM(input_size=NUM_CHANNELS, num_classes=5).to(self.device)
+        self.model = BiLSTM(input_size=NUM_CHANNELS, num_classes=5).to(self.device)
 
         # Step 1 & 2: filter_emg_data + StandardScaler via load_mindrove_data
         df, self.scaler = load_mindrove_data(DATA_FILE, fs=float(SAMPLING_RATE))
