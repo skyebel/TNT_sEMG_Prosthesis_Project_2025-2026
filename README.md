@@ -4,6 +4,7 @@
 **Academic Year 2025-2026**
  
 **Project Leads:** Skye Belsher, Thejo Tattala
+**Project members:** Enrique Aranda, Peter Little, Byron Chen, Ziqing Zhu, Bora Vanli, Dhruv Sehgal, Shivani Rajanala, Abhay Korlapati, Siddhant Gulati, Rishab Kolan, Tristan Lee
  
 ## Introduction
  
@@ -136,4 +137,4 @@ Karnam, Naveen Kumar, et al. "EMGHandNet: A Hybrid CNN and Bi-LSTM Architecture 
  
 ## Contributors
  
-Triton NeuroTech, University of California San Diego. Project leads: Skye Belsher and Thejo Tattala. Project members: Enrique Aranda, Peter Little, Byron Chen, Ziqing Zhu, Bora Vanli, Dhruv Sehgal, Shivani Rajanala, Abhay Korlapati, Siddhant Gulati, Rishab Kolan, Tristan Lee | Contributions span mechanical design and 3D printing, embedded firmware, sEMG signal processing, and machine learning.
+Triton NeuroTech @UC San Diego: Project leads & project members | Contributions span mechanical design and 3D printing, embedded firmware, sEMG signal processing, and machine learning.
