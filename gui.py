@@ -118,7 +118,7 @@ NUM_CHANNELS = 4
 SAMPLING_RATE = 500
 WINDOW_SIZE = 50
 STEP_SIZE = 10
-MODEL_PATH = "bilstm_vader.pt"
+MODEL_PATH = "bilstm_model.pt"
 DATA_FILE = "collected_emg_data.csv"
 
 PLOT_SAMPLES = 250
