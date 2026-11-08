@@ -3,7 +3,7 @@
 **Triton NeuroTech, University of California San Diego | Academic Year 2025-2026**
 
 
-**Iron Man Gauntlet** is an open-source, low-cost prosthetic hand system developed by Triton NeuroTech at UC San Diego for the [2026 California Neurotechnology Conference (CNTC)](https://caneurotech.vercel.app) at UC Berkeley. The system uses surface electromyography (sEMG) signals to classify hand gestures in real time with a bidirectional LSTM (BiLSTM), enabling intuitive control of a 3D-printed prosthetic arm. Our system prioritizes accessibility, using readily available components at roughly 50x lower cost than a comparable commercial prosthetic arm. Future work will focus on expanding the gesture set to 8+ gestures, adding proportional control, and improving wrist movement and wearability.
+**Iron Man Gauntlet** is an open-source, low-cost prosthetic hand system developed by Triton NeuroTech at UC San Diego for the [2026 California Neurotechnology Conference (CNTC)](https://caneurotech.vercel.app) at UC Berkeley. The system uses surface electromyography (sEMG) signals to classify hand gestures in real time via a bidirectional LSTM (BiLSTM), enabling intuitive control of a 3D-printed prosthetic arm. Our system prioritizes accessibility, using readily available components at roughly 50x lower cost than a comparable commercial prosthetic arm. Future work will focus on expanding the gesture set to 8+ gestures, adding proportional control, and improving wrist movement and wearability.
 
 **Project Leads:** Skye Belsher, Thejo Tattala
 
